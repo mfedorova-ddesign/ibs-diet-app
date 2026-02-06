@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IBS Diet Helper</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="header">
+    <div class="container">
+      <h1>IBS Diet Helper</h1>
+      <p class="tagline">Meal plans from IBS-friendly recipes</p>
+    </div>
+  </header>
+  <nav class="nav">
+    <div class="container">
+      <a href="#planner">Meal planner</a>
+      <a href="#recipes">Recipes</a>
+      <a href="#info">About IBS</a>
+    </div>
+  </nav>
+  <main class="main">
+    <section id="planner" class="section section-planner">
+      <div class="container">
+        <h2>Meal planner</h2>
+        <p class="section-intro">Choose a plan type, then click Generate. Click Generate again to get a new plan.</p>
+        <div class="planner-controls">
+          <div class="plan-options">
+            <label class="plan-option">
+              <input type="radio" name="plan-type" value="day" checked>
+              <span>Plan for today</span>
+            </label>
+            <label class="plan-option">
+              <input type="radio" name="plan-type" value="week">
+              <span>Plan for the week</span>
+            </label>
+          </div>
+          <button type="button" id="btn-generate" class="btn btn-primary">Generate</button>
+        </div>
+        <div id="plan-output" class="plan-output" aria-live="polite">
+          <p class="placeholder">Select an option above and click Generate.</p>
+        </div>
+      </div>
+    </section>
+    <section id="recipes" class="section section-recipes">
+      <div class="container">
+        <h2>Recipes</h2>
+        <p class="section-intro">IBS-friendly recipes. Adjust ingredients to your tolerances (e.g. low-FODMAP).</p>
+        <div id="recipes-list" class="recipes-list"></div>
+      </div>
+    </section>
+    <section id="info" class="section section-info">
+      <div class="container">
+        <h2>About IBS</h2>
+        <p><strong>Irritable bowel syndrome (IBS)</strong> affects the digestive system. Symptoms can include cramping, bloating, gas, and changes in bowel habits. Diet and lifestyle help manage symptoms.</p>
+        <h3>Diet tips</h3>
+        <ul>
+          <li>Eat regular, smaller meals. Avoid large or fatty meals.</li>
+          <li>Many benefit from a <strong>low-FODMAP</strong> approach under guidance.</li>
+          <li>Limit caffeine, alcohol, spicy foods, and artificial sweeteners if they trigger you.</li>
+          <li>Increase fiber gradually; soluble fiber (e.g. oats) is often better tolerated.</li>
+          <li>Stay hydrated and keep a food diary to spot your triggers.</li>
+        </ul>
+        <p class="disclaimer">For inspiration only. Follow your doctor's or dietitian's advice.</p>
+      </div>
+    </section>
+  </main>
+  <footer class="footer">
+    <div class="container">
+      <p>IBS Diet Helper – educational use. Consult a healthcare provider for personal advice.</p>
+    </div>
+  </footer>
+  <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,61 @@
+:root {
+  --bg: #f8f6f2;
+  --card: #fff;
+  --text: #2c2a26;
+  --muted: #5c5a56;
+  --accent: #4a7c59;
+  --accent-hover: #3d6b4a;
+  --secondary: #8b7355;
+  --border: #e5e2dc;
+  --radius: 10px;
+  --shadow: 0 2px 12px rgba(0,0,0,0.06);
+}
+* { box-sizing: border-box; }
+body { margin: 0; font-family: 'Segoe UI', system-ui, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
+.container { max-width: 900px; margin: 0 auto; padding: 0 1.25rem; }
+.header { background: linear-gradient(135deg, #4a7c59 0%, #5a9a6a 100%); color: #fff; padding: 2rem 0; text-align: center; }
+.header h1 { margin: 0 0 0.35em; font-size: 1.75rem; font-weight: 700; }
+.tagline { margin: 0; opacity: 0.95; font-size: 1rem; }
+.nav { background: var(--card); border-bottom: 1px solid var(--border); padding: 0.75rem 0; position: sticky; top: 0; z-index: 10; }
+.nav .container { display: flex; gap: 1.5rem; flex-wrap: wrap; }
+.nav a { color: var(--accent); text-decoration: none; font-weight: 500; }
+.nav a:hover { text-decoration: underline; }
+
+.section { padding: 2.5rem 0; }
+.section h2 { margin: 0 0 0.75em; font-size: 1.5rem; color: var(--text); }
+.section h3 { margin: 1.25em 0 0.5em; font-size: 1.15rem; }
+.section-intro, .section p { color: var(--muted); margin: 0 0 1em; }
+.section ul { margin: 0 0 1em; padding-left: 1.25em; }
+.disclaimer { font-size: 0.9rem; font-style: italic; margin-top: 1.5em; }
+
+/* Meal planner – main section */
+.section-planner { padding: 2.5rem 0; background: rgba(74, 124, 89, 0.06); }
+.section-planner .container { max-width: 720px; }
+.section-planner h2 { font-size: 1.6rem; color: var(--accent); }
+.planner-controls { display: flex; align-items: center; gap: 1.25rem; flex-wrap: wrap; margin-bottom: 1.5rem; }
+.plan-options { display: flex; gap: 1.25rem; flex-wrap: wrap; }
+.plan-option { display: flex; align-items: center; gap: 0.5rem; cursor: pointer; font-weight: 500; color: var(--text); }
+.plan-option input { cursor: pointer; }
+.btn { padding: 0.65rem 1.25rem; border: none; border-radius: var(--radius); font-size: 1rem; font-weight: 600; cursor: pointer; transition: background 0.2s; }
+.btn-primary { background: var(--accent); color: #fff; }
+.btn-primary:hover { background: var(--accent-hover); }
+.plan-output { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.5rem; box-shadow: var(--shadow); min-height: 120px; }
+.plan-output .placeholder { color: var(--muted); margin: 0; }
+.plan-output h3 { margin: 0 0 0.5em; font-size: 1.1rem; }
+.plan-day { margin-bottom: 1.25rem; padding-bottom: 1rem; border-bottom: 1px solid var(--border); }
+.plan-day:last-child { margin-bottom: 0; padding-bottom: 0; border-bottom: none; }
+.plan-meal { margin: 0.35em 0; font-size: 0.95rem; }
+.plan-meal strong { color: var(--accent); margin-right: 0.5em; }
+
+/* Recipes */
+.recipes-list { margin-top: 1rem; }
+.recipe-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.25rem; margin-bottom: 1rem; box-shadow: var(--shadow); }
+.recipe-meal { font-size: 0.8rem; color: var(--accent); text-transform: uppercase; letter-spacing: 0.05em; display: block; margin-bottom: 0.35em; }
+.recipe-title { margin: 0 0 0.75em; font-size: 1.1rem; color: var(--text); }
+.recipe-ingredients { margin: 0.5em 0 0.75em; padding-left: 1.25em; font-size: 0.9rem; color: var(--muted); }
+.recipe-ingredients li { margin: 0.2em 0; }
+.recipe-steps { margin: 0.5em 0 0; padding-left: 1.25em; font-size: 0.9rem; color: var(--muted); }
+.recipe-steps li { margin: 0.35em 0; }
+
+.footer { background: var(--card); border-top: 1px solid var(--border); padding: 1.25rem 0; margin-top: 2rem; text-align: center; }
+.footer p { margin: 0; font-size: 0.9rem; color: var(--muted); }
