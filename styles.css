@@ -17,9 +17,12 @@ body { margin: 0; font-family: 'Segoe UI', system-ui, sans-serif; background: va
 .header h1 { margin: 0 0 0.35em; font-size: 1.75rem; font-weight: 700; }
 .tagline { margin: 0; opacity: 0.95; font-size: 1rem; }
 .nav { background: var(--card); border-bottom: 1px solid var(--border); padding: 0.75rem 0; position: sticky; top: 0; z-index: 10; }
-.nav .container { display: flex; gap: 1.5rem; flex-wrap: wrap; }
-.nav a { color: var(--accent); text-decoration: none; font-weight: 500; }
-.nav a:hover { text-decoration: underline; }
+.nav .container { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+.nav .menu { display: flex; list-style: none; margin: 0; padding: 0; gap: 0.5rem; }
+.nav .menu a { display: block; padding: 0.6rem 1.25rem; color: var(--accent); text-decoration: none; font-weight: 600; border-radius: var(--radius); transition: background 0.2s, color 0.2s; }
+.nav .menu a:hover { background: rgba(74, 124, 89, 0.12); color: var(--accent-hover); }
+.nav .menu a.is-active { background: var(--accent); color: #fff; }
+.nav .menu a.is-active:hover { background: var(--accent-hover); color: #fff; }
 
 .section { padding: 2.5rem 0; }
 .section h2 { margin: 0 0 0.75em; font-size: 1.5rem; color: var(--text); }
@@ -46,16 +49,47 @@ body { margin: 0; font-family: 'Segoe UI', system-ui, sans-serif; background: va
 .plan-day:last-child { margin-bottom: 0; padding-bottom: 0; border-bottom: none; }
 .plan-meal { margin: 0.35em 0; font-size: 0.95rem; }
 .plan-meal strong { color: var(--accent); margin-right: 0.5em; }
+.plan-dish { background: none; border: none; padding: 0; font: inherit; color: var(--accent); text-decoration: none; border-bottom: 1px dotted var(--accent); cursor: pointer; }
+.plan-dish:hover { color: var(--accent-hover); border-bottom-style: solid; }
 
-/* Recipes */
+/* Recipe modal (full recipe card – used on recipes page and meal planner) */
+.recipe-modal { position: fixed; inset: 0; z-index: 1000; display: flex; align-items: center; justify-content: center; padding: 1rem; opacity: 0; visibility: hidden; transition: opacity 0.2s, visibility 0.2s; }
+.recipe-modal.is-visible { opacity: 1; visibility: visible; }
+.recipe-modal-backdrop { position: absolute; inset: 0; background: rgba(0,0,0,0.4); }
+.recipe-modal-card { position: relative; background: var(--card); border-radius: var(--radius); box-shadow: 0 12px 40px rgba(0,0,0,0.15); max-width: 480px; max-height: 90vh; overflow: auto; padding: 1.5rem 1.5rem 2rem; }
+.recipe-modal-close { position: absolute; top: 0.75rem; right: 0.75rem; width: 2rem; height: 2rem; padding: 0; border: none; background: none; font-size: 1.5rem; line-height: 1; color: var(--muted); cursor: pointer; border-radius: var(--radius); }
+.recipe-modal-close:hover { color: var(--text); background: var(--border); }
+.recipe-modal-meal { font-size: 0.75rem; color: var(--accent); text-transform: uppercase; letter-spacing: 0.06em; display: block; margin-bottom: 0.25em; }
+.recipe-modal-title { margin: 0 0 0.5em; font-size: 1.25rem; color: var(--text); }
+.recipe-modal-nutrition { margin-bottom: 1em; }
+.recipe-modal-ingredients, .recipe-modal-steps { margin: 0.5em 0 0.75em; padding-left: 1.25em; font-size: 0.95rem; color: var(--muted); }
+.recipe-modal-ingredients li, .recipe-modal-steps li { margin: 0.25em 0; }
+
+/* Nutrition – subtle inline (per day in plan) */
+.plan-day-nutrition { margin-top: 0.6rem; padding-top: 0.5rem; border-top: 1px solid rgba(74, 124, 89, 0.25); font-size: 0.8rem; font-weight: 600; }
+.plan-day-nutrition .nut-sep { color: var(--border); }
+.plan-day-nutrition .nut-cal { color: #2d6b3e; }
+.plan-day-nutrition .nut-protein { color: #8b5a2b; }
+.plan-day-nutrition .nut-carbs { color: #4a5580; }
+.plan-day-nutrition .nut-fat { color: #6b4a6b; }
+.plan-day-nutrition .nut-fiber { color: #2d5c50; }
+
+/* Nutrition inline (recipe card – same subtle style as plan) */
+.recipe-modal-nutrition { margin-top: 1rem; padding-top: 0.75rem; border-top: 1px solid rgba(74, 124, 89, 0.25); font-size: 0.8rem; font-weight: 600; }
+.recipe-modal-nutrition .nut-sep { color: var(--border); }
+.recipe-modal-nutrition .nut-cal { color: #2d6b3e; }
+.recipe-modal-nutrition .nut-protein { color: #8b5a2b; }
+.recipe-modal-nutrition .nut-carbs { color: #4a5580; }
+.recipe-modal-nutrition .nut-fat { color: #6b4a6b; }
+.recipe-modal-nutrition .nut-fiber { color: #2d5c50; }
+
+/* Recipes list (name + short description only; click opens modal) */
 .recipes-list { margin-top: 1rem; }
-.recipe-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.25rem; margin-bottom: 1rem; box-shadow: var(--shadow); }
-.recipe-meal { font-size: 0.8rem; color: var(--accent); text-transform: uppercase; letter-spacing: 0.05em; display: block; margin-bottom: 0.35em; }
-.recipe-title { margin: 0 0 0.75em; font-size: 1.1rem; color: var(--text); }
-.recipe-ingredients { margin: 0.5em 0 0.75em; padding-left: 1.25em; font-size: 0.9rem; color: var(--muted); }
-.recipe-ingredients li { margin: 0.2em 0; }
-.recipe-steps { margin: 0.5em 0 0; padding-left: 1.25em; font-size: 0.9rem; color: var(--muted); }
-.recipe-steps li { margin: 0.35em 0; }
+.recipe-list-item { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 1rem 1.25rem; margin-bottom: 0.75rem; box-shadow: var(--shadow); cursor: pointer; transition: box-shadow 0.2s, border-color 0.2s; }
+.recipe-list-item:hover { border-color: var(--accent); box-shadow: 0 4px 16px rgba(74, 124, 89, 0.15); }
+.recipe-list-meal { font-size: 0.75rem; color: var(--accent); text-transform: uppercase; letter-spacing: 0.05em; display: block; margin-bottom: 0.25em; }
+.recipe-list-title { margin: 0 0 0.35em; font-size: 1.05rem; color: var(--text); }
+.recipe-list-desc { margin: 0; font-size: 0.9rem; color: var(--muted); line-height: 1.45; }
 
 .footer { background: var(--card); border-top: 1px solid var(--border); padding: 1.25rem 0; margin-top: 2rem; text-align: center; }
 .footer p { margin: 0; font-size: 0.9rem; color: var(--muted); }

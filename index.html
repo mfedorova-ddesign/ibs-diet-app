@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>IBS Diet Helper</title>
+  <title>Meal planner – IBS Diet Helper</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -13,15 +13,17 @@
       <p class="tagline">Meal plans from IBS-friendly recipes</p>
     </div>
   </header>
-  <nav class="nav">
+  <nav class="nav" aria-label="Main menu">
     <div class="container">
-      <a href="#planner">Meal planner</a>
-      <a href="#recipes">Recipes</a>
-      <a href="#info">About IBS</a>
+      <ul class="menu">
+        <li><a href="/" class="is-active" aria-current="page">Meal planner</a></li>
+        <li><a href="/recipes.html">Recipes</a></li>
+        <li><a href="/about.html">About IBS</a></li>
+      </ul>
     </div>
   </nav>
   <main class="main">
-    <section id="planner" class="section section-planner">
+    <section class="section section-planner">
       <div class="container">
         <h2>Meal planner</h2>
         <p class="section-intro">Choose a plan type, then click Generate. Click Generate again to get a new plan.</p>
@@ -41,28 +43,6 @@
         <div id="plan-output" class="plan-output" aria-live="polite">
           <p class="placeholder">Select an option above and click Generate.</p>
         </div>
-      </div>
-    </section>
-    <section id="recipes" class="section section-recipes">
-      <div class="container">
-        <h2>Recipes</h2>
-        <p class="section-intro">IBS-friendly recipes. Adjust ingredients to your tolerances (e.g. low-FODMAP).</p>
-        <div id="recipes-list" class="recipes-list"></div>
-      </div>
-    </section>
-    <section id="info" class="section section-info">
-      <div class="container">
-        <h2>About IBS</h2>
-        <p><strong>Irritable bowel syndrome (IBS)</strong> affects the digestive system. Symptoms can include cramping, bloating, gas, and changes in bowel habits. Diet and lifestyle help manage symptoms.</p>
-        <h3>Diet tips</h3>
-        <ul>
-          <li>Eat regular, smaller meals. Avoid large or fatty meals.</li>
-          <li>Many benefit from a <strong>low-FODMAP</strong> approach under guidance.</li>
-          <li>Limit caffeine, alcohol, spicy foods, and artificial sweeteners if they trigger you.</li>
-          <li>Increase fiber gradually; soluble fiber (e.g. oats) is often better tolerated.</li>
-          <li>Stay hydrated and keep a food diary to spot your triggers.</li>
-        </ul>
-        <p class="disclaimer">For inspiration only. Follow your doctor's or dietitian's advice.</p>
       </div>
     </section>
   </main>

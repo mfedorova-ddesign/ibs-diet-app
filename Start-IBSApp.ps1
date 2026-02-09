@@ -1,5 +1,5 @@
 # Simple HTTP server for IBS Diet Helper (no Python/Node needed)
-$Port = 8080
+$Port = 9080
 $Root = $PSScriptRoot
 $Prefix = "http://localhost:$Port/"
 
@@ -32,6 +32,7 @@ while ($Listener.IsListening) {
     if (-not $ContentType) { $ContentType = 'application/octet-stream' }
     $Response.ContentType = $ContentType
     $Response.StatusCode = 200
+    if ($Ext -eq '.html') { $Response.AddHeader('Cache-Control', 'no-cache') }
     $Bytes = [System.IO.File]::ReadAllBytes($FilePath)
     $Response.ContentLength64 = $Bytes.Length
     $Response.OutputStream.Write($Bytes, 0, $Bytes.Length)

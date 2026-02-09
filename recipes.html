@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Recipes – IBS Diet Helper</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="header">
+    <div class="container">
+      <h1>IBS Diet Helper</h1>
+      <p class="tagline">Meal plans from IBS-friendly recipes</p>
+    </div>
+  </header>
+  <nav class="nav" aria-label="Main menu">
+    <div class="container">
+      <ul class="menu">
+        <li><a href="/">Meal planner</a></li>
+        <li><a href="/recipes.html" class="is-active" aria-current="page">Recipes</a></li>
+        <li><a href="/about.html">About IBS</a></li>
+      </ul>
+    </div>
+  </nav>
+  <main class="main">
+    <section class="section section-recipes">
+      <div class="container">
+        <h2>Recipes</h2>
+        <p class="section-intro">IBS-friendly recipes. Adjust ingredients to your tolerances (e.g. low-FODMAP).</p>
+        <div id="recipes-list" class="recipes-list"></div>
+      </div>
+    </section>
+  </main>
+  <footer class="footer">
+    <div class="container">
+      <p>IBS Diet Helper – educational use. Consult a healthcare provider for personal advice.</p>
+    </div>
+  </footer>
+  <script src="app.js"></script>
+</body>
+</html>
