@@ -1,0 +1,455 @@
+[
+  {
+    "name": "Savory Oatmeal with Eggs & Greens",
+    "meal": "breakfast",
+    "ingredients": [
+      "50 g gluten-free rolled oats",
+      "200 ml lactose-free milk",
+      "2 eggs",
+      "1 tsp chia seeds",
+      "handful of spinach",
+      "cucumber",
+      "5 g ghee or butter",
+      "salt, turmeric"
+    ],
+    "steps": [
+      "Cook oats in milk with salt and turmeric.",
+      "Stir in chia seeds and ghee.",
+      "Boil the eggs.",
+      "Serve with cucumber and fresh spinach."
+    ],
+    "nutrition": { "calories": 445, "protein": 27, "carbs": 42, "fat": 20, "fiber": 9 }
+  },
+  {
+    "name": "Sweet Protein Oatmeal with Berries",
+    "meal": "breakfast",
+    "ingredients": [
+      "50 g gluten-free oats",
+      "200 ml lactose-free milk",
+      "25 g lactose-free protein isolate",
+      "handful of blueberries",
+      "1/2 unripe banana",
+      "cinnamon",
+      "1 tsp ground flaxseed"
+    ],
+    "steps": [
+      "Cook the oats.",
+      "Stir in protein powder, cinnamon, and flax.",
+      "Top with berries and banana."
+    ],
+    "nutrition": { "calories": 430, "protein": 33, "carbs": 48, "fat": 11, "fiber": 10 }
+  },
+  {
+    "name": "Vegetable Omelet with Cheese",
+    "meal": "breakfast",
+    "ingredients": [
+      "3 eggs",
+      "stewed zucchini",
+      "spinach",
+      "20 g lactose-free hard cheese",
+      "5 g ghee",
+      "fresh herbs"
+    ],
+    "steps": [
+      "Lightly stew the vegetables.",
+      "Pour in beaten eggs, add cheese.",
+      "Cook covered until set."
+    ],
+    "nutrition": { "calories": 420, "protein": 30, "carbs": 10, "fat": 30, "fiber": 4 }
+  },
+  {
+    "name": "Cottage Cheese Bowl with Fruit & Nuts",
+    "meal": "breakfast",
+    "ingredients": [
+      "200 g lactose-free cottage cheese",
+      "1 kiwi",
+      "handful of strawberries",
+      "15 g walnuts",
+      "cinnamon"
+    ],
+    "steps": [
+      "Combine everything in a bowl."
+    ],
+    "nutrition": { "calories": 410, "protein": 32, "carbs": 28, "fat": 22, "fiber": 6 }
+  },
+  {
+    "name": "Turkey with Rice and Stewed Vegetables",
+    "meal": "lunch/dinner",
+    "ingredients": [
+      "150 g turkey fillet",
+      "70 g dry rice",
+      "zucchini, carrot",
+      "10 g olive oil",
+      "fresh herbs"
+    ],
+    "steps": [
+      "Cook the rice.",
+      "Bake or stew the turkey.",
+      "Stew vegetables in olive oil.",
+      "Combine and add herbs."
+    ],
+    "nutrition": { "calories": 540, "protein": 42, "carbs": 55, "fat": 17, "fiber": 6 }
+  },
+  {
+    "name": "Salmon Salad with Potatoes & Greens",
+    "meal": "lunch/dinner",
+    "ingredients": [
+      "120 g salmon",
+      "250 g potatoes",
+      "arugula, cucumber",
+      "10 g olive oil",
+      "lemon juice"
+    ],
+    "steps": [
+      "Bake the salmon.",
+      "Boil the potatoes.",
+      "Mix with greens, olive oil, and lemon."
+    ],
+    "nutrition": { "calories": 520, "protein": 36, "carbs": 45, "fat": 22, "fiber": 7 }
+  },
+  {
+    "name": "Buckwheat with Turkey Meatballs & Carrot",
+    "meal": "lunch/dinner",
+    "ingredients": [
+      "60 g dry buckwheat",
+      "160 g ground turkey",
+      "carrot",
+      "10 g ghee",
+      "fresh herbs"
+    ],
+    "steps": [
+      "Cook the buckwheat.",
+      "Form meatballs and stew them.",
+      "Stew carrot in ghee.",
+      "Combine and add herbs."
+    ],
+    "nutrition": { "calories": 550, "protein": 44, "carbs": 50, "fat": 20, "fiber": 8 }
+  },
+  {
+    "name": "Low-FODMAP Butter Chicken with Rice",
+    "meal": "lunch/dinner",
+    "ingredients": [
+      "150 g chicken",
+      "70 g dry rice",
+      "40 g lactose-free cream",
+      "tomatoes",
+      "ghee, turmeric, paprika, asafoetida"
+    ],
+    "steps": [
+      "Stew chicken with spices.",
+      "Add tomatoes and cream.",
+      "Serve with rice."
+    ],
+    "nutrition": { "calories": 545, "protein": 40, "carbs": 58, "fat": 18, "fiber": 5 }
+  },
+  {
+    "name": "Broccoli Cream Soup with Turkey",
+    "meal": "lunch/dinner",
+    "ingredients": [
+      "broccoli florets",
+      "120 g turkey",
+      "30 g lactose-free cream",
+      "5 g ghee",
+      "fresh herbs"
+    ],
+    "steps": [
+      "Boil broccoli and blend with cream.",
+      "Stew turkey and add to the soup."
+    ],
+    "nutrition": { "calories": 500, "protein": 38, "carbs": 28, "fat": 26, "fiber": 6 }
+  },
+  {
+    "name": "Crackers with Butter & Cheese",
+    "meal": "snack",
+    "ingredients": [
+      "3 rice crackers",
+      "15 g butter",
+      "25 g lactose-free hard cheese"
+    ],
+    "steps": [
+      "Spread butter on crackers and top with cheese."
+    ],
+    "nutrition": { "calories": 240, "protein": 9, "carbs": 18, "fat": 18, "fiber": 1 }
+  },
+  {
+    "name": "Yogurt with Banana & Peanut Butter",
+    "meal": "snack",
+    "ingredients": [
+      "170 g lactose-free yogurt",
+      "1/2 banana",
+      "15 g peanut butter"
+    ],
+    "steps": [
+      "Mix everything together."
+    ],
+    "nutrition": { "calories": 250, "protein": 14, "carbs": 22, "fat": 15, "fiber": 3 }
+  },
+  {
+    "name": "Protein Berry Bowl",
+    "meal": "snack",
+    "ingredients": [
+      "150 g lactose-free yogurt",
+      "20 g protein isolate",
+      "handful of strawberries",
+      "1 tsp chia seeds"
+    ],
+    "steps": [
+      "Mix all ingredients."
+    ],
+    "nutrition": { "calories": 230, "protein": 26, "carbs": 12, "fat": 8, "fiber": 4 }
+  },
+  {
+    "name": "Banana with Nuts & Dark Chocolate",
+    "meal": "snack",
+    "ingredients": [
+      "1 small banana",
+      "15 g walnuts",
+      "10 g dark chocolate"
+    ],
+    "steps": [
+      "Eat together with tea."
+    ],
+    "nutrition": { "calories": 260, "protein": 5, "carbs": 28, "fat": 17, "fiber": 4 }
+  },
+  {
+    "name": "Rice Porridge with Protein & Blueberries",
+    "meal": "breakfast",
+    "ingredients": [
+      "60 g dry white rice",
+      "200 ml lactose-free milk",
+      "25 g protein isolate",
+      "handful blueberries",
+      "1 tsp chia",
+      "cinnamon"
+    ],
+    "steps": [
+      "Cook rice in milk until soft.",
+      "Stir in protein, chia, cinnamon.",
+      "Top with blueberries."
+    ],
+    "nutrition": { "calories": 440, "protein": 32, "carbs": 58, "fat": 9, "fiber": 6 }
+  },
+  {
+    "name": "Buckwheat Breakfast Bowl with Egg & Greens",
+    "meal": "breakfast",
+    "ingredients": [
+      "60 g dry buckwheat",
+      "2 eggs",
+      "spinach",
+      "cucumber",
+      "10 g ghee",
+      "herbs, salt"
+    ],
+    "steps": [
+      "Cook buckwheat.",
+      "Fry eggs in ghee.",
+      "Serve with greens and cucumber."
+    ],
+    "nutrition": { "calories": 430, "protein": 26, "carbs": 42, "fat": 22, "fiber": 7 }
+  },
+  {
+    "name": "Oat Pancakes with Yogurt & Strawberries",
+    "meal": "breakfast",
+    "ingredients": [
+      "50 g oat flour",
+      "1 egg",
+      "120 g lactose-free yogurt",
+      "strawberries",
+      "1 tsp flaxseed",
+      "cinnamon"
+    ],
+    "steps": [
+      "Mix flour, egg, yogurt, flax.",
+      "Cook pancakes on ghee.",
+      "Serve with strawberries."
+    ],
+    "nutrition": { "calories": 420, "protein": 28, "carbs": 44, "fat": 15, "fiber": 8 }
+  },
+  {
+    "name": "Savory Cottage Cheese Plate with Eggs & Tomato",
+    "meal": "breakfast",
+    "ingredients": [
+      "180 g lactose-free cottage cheese",
+      "2 eggs",
+      "tomato",
+      "cucumber",
+      "10 g olive oil",
+      "herbs"
+    ],
+    "steps": [
+      "Boil eggs.",
+      "Serve with cottage cheese, vegetables, olive oil, herbs."
+    ],
+    "nutrition": { "calories": 435, "protein": 34, "carbs": 18, "fat": 26, "fiber": 4 }
+  },
+  {
+    "name": "Potato & Egg Warm Salad with Spinach",
+    "meal": "breakfast",
+    "ingredients": [
+      "250 g boiled potatoes",
+      "2 eggs",
+      "spinach",
+      "10 g olive oil",
+      "lemon juice, salt"
+    ],
+    "steps": [
+      "Slice warm potatoes.",
+      "Add boiled eggs and spinach.",
+      "Drizzle with olive oil and lemon."
+    ],
+    "nutrition": { "calories": 445, "protein": 24, "carbs": 48, "fat": 20, "fiber": 6 }
+  },
+  {
+    "name": "Baked Cod with Rice & Zucchini",
+    "meal": "lunch/dinner",
+    "ingredients": [
+      "150 g cod",
+      "70 g dry rice",
+      "zucchini",
+      "10 g olive oil",
+      "herbs, lemon"
+    ],
+    "steps": [
+      "Bake cod with herbs and lemon.",
+      "Cook rice.",
+      "Stew zucchini in olive oil.",
+      "Serve together."
+    ],
+    "nutrition": { "calories": 515, "protein": 40, "carbs": 56, "fat": 14, "fiber": 5 }
+  },
+  {
+    "name": "Turkey & Potato Stew with Carrots",
+    "meal": "lunch/dinner",
+    "ingredients": [
+      "160 g turkey",
+      "300 g potatoes",
+      "carrot",
+      "10 g ghee",
+      "herbs"
+    ],
+    "steps": [
+      "Cube and stew all ingredients until soft.",
+      "Add herbs before serving."
+    ],
+    "nutrition": { "calories": 550, "protein": 42, "carbs": 52, "fat": 20, "fiber": 7 }
+  },
+  {
+    "name": "Salmon with Buckwheat & Spinach",
+    "meal": "lunch/dinner",
+    "ingredients": [
+      "120 g salmon",
+      "60 g dry buckwheat",
+      "spinach",
+      "10 g olive oil",
+      "lemon"
+    ],
+    "steps": [
+      "Cook buckwheat.",
+      "Bake salmon.",
+      "Serve with spinach, olive oil, lemon."
+    ],
+    "nutrition": { "calories": 535, "protein": 37, "carbs": 46, "fat": 23, "fiber": 6 }
+  },
+  {
+    "name": "Turkey Meatballs with Rice Pasta & Tomato Sauce",
+    "meal": "lunch/dinner",
+    "ingredients": [
+      "160 g ground turkey",
+      "70 g gluten-free rice pasta",
+      "tomatoes",
+      "10 g olive oil",
+      "asafoetida, herbs"
+    ],
+    "steps": [
+      "Form and cook meatballs.",
+      "Cook pasta.",
+      "Simmer tomatoes with oil and spices.",
+      "Combine."
+    ],
+    "nutrition": { "calories": 545, "protein": 43, "carbs": 58, "fat": 17, "fiber": 5 }
+  },
+  {
+    "name": "Pumpkin & Carrot Cream Soup with Chicken",
+    "meal": "lunch/dinner",
+    "ingredients": [
+      "pumpkin",
+      "carrot",
+      "150 g chicken",
+      "30 g lactose-free cream",
+      "5 g ghee",
+      "herbs"
+    ],
+    "steps": [
+      "Boil vegetables and blend with cream.",
+      "Cook chicken and add to soup."
+    ],
+    "nutrition": { "calories": 505, "protein": 39, "carbs": 32, "fat": 24, "fiber": 6 }
+  },
+  {
+    "name": "Rice Crackers with Peanut Butter & Banana",
+    "meal": "snack",
+    "ingredients": [
+      "3 rice crackers",
+      "15 g peanut butter",
+      "1/2 banana"
+    ],
+    "steps": [
+      "Spread peanut butter on crackers.",
+      "Add banana slices."
+    ],
+    "nutrition": { "calories": 245, "protein": 8, "carbs": 28, "fat": 14, "fiber": 3 }
+  },
+  {
+    "name": "Yogurt with Kiwi & Walnuts",
+    "meal": "snack",
+    "ingredients": [
+      "170 g lactose-free yogurt",
+      "1 kiwi",
+      "15 g walnuts"
+    ],
+    "steps": [
+      "Mix together."
+    ],
+    "nutrition": { "calories": 240, "protein": 13, "carbs": 20, "fat": 16, "fiber": 4 }
+  },
+  {
+    "name": "Protein Shake with Milk & Strawberries",
+    "meal": "snack",
+    "ingredients": [
+      "250 ml lactose-free milk",
+      "25 g protein isolate",
+      "strawberries",
+      "cinnamon"
+    ],
+    "steps": [
+      "Blend everything."
+    ],
+    "nutrition": { "calories": 230, "protein": 30, "carbs": 14, "fat": 6, "fiber": 2 }
+  },
+  {
+    "name": "Dark Chocolate, Nuts & Orange",
+    "meal": "snack",
+    "ingredients": [
+      "10 g dark chocolate",
+      "15 g almonds",
+      "1 small orange"
+    ],
+    "steps": [
+      "Eat together with tea."
+    ],
+    "nutrition": { "calories": 255, "protein": 6, "carbs": 22, "fat": 18, "fiber": 5 }
+  },
+  {
+    "name": "Cottage Cheese with Blueberries & Flax",
+    "meal": "snack",
+    "ingredients": [
+      "150 g lactose-free cottage cheese",
+      "blueberries",
+      "1 tsp flaxseed"
+    ],
+    "steps": [
+      "Mix in a bowl."
+    ],
+    "nutrition": { "calories": 225, "protein": 24, "carbs": 12, "fat": 9, "fiber": 3 }
+  }
+]

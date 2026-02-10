@@ -1,28 +1,8 @@
-// Recipes: name, meal type, ingredients, steps, nutrition (per serving: kcal, g)
-var RECIPES = [
-  { name: 'Oatmeal with banana and maple syrup', meal: 'breakfast', ingredients: ['40 g gluten-free oats', '1 small ripe banana, sliced', '1–2 tsp maple syrup', 'Water or lactose-free milk', 'Pinch of salt'], steps: ['Bring liquid and salt to a boil. Stir in oats, reduce heat, cook 5–7 min.', 'Top with banana and maple syrup.'], nutrition: { calories: 285, protein: 8, carbs: 52, fat: 5, fiber: 6 } },
-  { name: 'Scrambled eggs with spinach', meal: 'breakfast', ingredients: ['2 eggs', 'Handful spinach, well washed', '1 tsp olive oil or butter', 'Salt, pepper'], steps: ['Sauté spinach in oil until wilted. Beat eggs, add to pan, scramble over low heat until set. Season.'], nutrition: { calories: 220, protein: 14, carbs: 2, fat: 18, fiber: 1 } },
-  { name: 'Rice porridge (congee)', meal: 'breakfast', ingredients: ['50 g white rice', '400–500 ml water or broth', 'Small piece ginger (optional)', 'Salt'], steps: ['Rinse rice. Boil with water and ginger. Simmer 45–60 min, stirring, until thick. Season.'], nutrition: { calories: 180, protein: 3, carbs: 40, fat: 0, fiber: 0 } },
-  { name: 'Lactose-free yogurt with blueberries', meal: 'breakfast', ingredients: ['150 g plain lactose-free yogurt', 'Small handful blueberries', 'Optional: 1 tsp maple syrup'], steps: ['Spoon yogurt into a bowl. Top with blueberries and optional syrup.'], nutrition: { calories: 145, protein: 8, carbs: 18, fat: 4, fiber: 1 } },
-  { name: 'Toast with peanut butter', meal: 'breakfast', ingredients: ['1–2 slices sourdough or white bread', '1–2 tbsp natural peanut butter (no added sugar)'], steps: ['Toast bread. Spread with peanut butter.'], nutrition: { calories: 320, protein: 12, carbs: 28, fat: 18, fiber: 2 } },
-  { name: 'Grilled chicken breast with steamed rice', meal: 'lunch', ingredients: ['1 chicken breast', '80 g white rice, cooked', 'Olive oil, dried herbs, salt, pepper'], steps: ['Season chicken, grill or pan-fry until cooked through. Serve with steamed rice.'], nutrition: { calories: 420, protein: 42, carbs: 45, fat: 8, fiber: 1 } },
-  { name: 'Baked salmon with cucumber and rice', meal: 'lunch', ingredients: ['1 salmon fillet', '80 g rice, cooked', 'Few slices cucumber', 'Lemon, dill, olive oil'], steps: ['Place salmon on foil, drizzle oil, add dill. Bake at 180°C until done. Serve with rice and cucumber.'], nutrition: { calories: 465, protein: 35, carbs: 42, fat: 18, fiber: 1 } },
-  { name: 'Turkey and rice soup', meal: 'lunch', ingredients: ['100 g cooked turkey, shredded', '60 g rice', '500 ml low-FODMAP or homemade broth', 'Carrot, celery (if tolerated), salt, pepper'], steps: ['Bring broth to boil. Add rice and veg, simmer until rice is tender. Add turkey, season.'], nutrition: { calories: 285, protein: 28, carbs: 28, fat: 4, fiber: 1 } },
-  { name: 'Quinoa bowl with grilled zucchini', meal: 'lunch', ingredients: ['60 g quinoa, cooked', 'Half small zucchini, sliced', 'Olive oil, herbs', 'Optional: lemon juice'], steps: ['Toss zucchini in oil, grill or pan-fry. Serve over quinoa with herbs and lemon.'], nutrition: { calories: 245, protein: 9, carbs: 32, fat: 9, fiber: 4 } },
-  { name: 'Tuna salad with rice crackers', meal: 'lunch', ingredients: ['1 can tuna in water, drained', '1 tbsp light mayo or olive oil', 'Rice crackers', 'Lemon, salt, pepper'], steps: ['Flake tuna, mix with mayo or oil and lemon. Season. Serve with rice crackers.'], nutrition: { calories: 260, protein: 28, carbs: 18, fat: 8, fiber: 1 } },
-  { name: 'Grilled white fish with mashed potato', meal: 'dinner', ingredients: ['1 white fish fillet (e.g. cod, haddock)', '1 medium potato', 'Lactose-free milk or olive oil', 'Salt, pepper, herbs'], steps: ['Boil potato until tender, mash with milk or oil. Season fish, grill or bake. Serve together.'], nutrition: { calories: 380, protein: 32, carbs: 42, fat: 10, fiber: 3 } },
-  { name: 'Chicken stir-fry with rice', meal: 'dinner', ingredients: ['1 chicken breast, sliced', '80 g rice, cooked', 'Carrot, bell pepper, bok choy (low-FODMAP veg)', 'Tamari or soy, ginger, oil'], steps: ['Stir-fry chicken until cooked. Add veg, stir-fry. Add tamari and ginger. Serve over rice.'], nutrition: { calories: 435, protein: 40, carbs: 48, fat: 9, fiber: 2 } },
-  { name: 'Lean beef with carrots and rice', meal: 'dinner', ingredients: ['100 g lean beef', '1 small carrot, sliced', '80 g rice, cooked', 'Oil, salt, pepper'], steps: ['Pan-fry or grill beef to taste. Steam or boil carrot. Serve with rice.'], nutrition: { calories: 445, protein: 38, carbs: 48, fat: 10, fiber: 2 } },
-  { name: 'Baked cod with roasted potato and green beans', meal: 'dinner', ingredients: ['1 cod fillet', '1 medium potato, cubed', 'Small handful green beans', 'Olive oil, herbs'], steps: ['Toss potato in oil, roast at 200°C until golden. Bake cod with herbs. Steam beans. Serve.'], nutrition: { calories: 365, protein: 32, carbs: 42, fat: 8, fiber: 4 } },
-  { name: 'Lentil soup', meal: 'dinner', ingredients: ['60 g red lentils', '400 ml water or broth', 'Small carrot, diced', 'Turmeric, salt'], steps: ['Rinse lentils. Simmer with water, carrot and turmeric until soft. Blend if desired, season. Start with a small portion.'], nutrition: { calories: 245, protein: 14, carbs: 42, fat: 1, fiber: 8 } },
-  { name: 'Rice cakes with almond butter', meal: 'snack', ingredients: ['2 plain rice cakes', '1 tbsp almond butter'], steps: ['Spread almond butter on rice cakes.'], nutrition: { calories: 165, protein: 4, carbs: 18, fat: 9, fiber: 1 } },
-  { name: 'Ripe banana', meal: 'snack', ingredients: ['1 small ripe banana'], steps: ['Peel and eat. Often better tolerated when ripe.'], nutrition: { calories: 90, protein: 1, carbs: 23, fat: 0, fiber: 3 } },
-  { name: 'Strawberries', meal: 'snack', ingredients: ['Small handful strawberries'], steps: ['Wash and eat. Usually low-FODMAP in small servings.'], nutrition: { calories: 35, protein: 0, carbs: 8, fat: 0, fiber: 2 } },
-  { name: 'Plain rice crackers', meal: 'snack', ingredients: ['Plain rice crackers (no onion/garlic)'], steps: ['Serve as is.'], nutrition: { calories: 70, protein: 1, carbs: 14, fat: 1, fiber: 0 } },
-  { name: 'Carrot sticks with hummus', meal: 'snack', ingredients: ['Carrot sticks', '1–2 tbsp hummus'], steps: ['Serve carrot sticks with a small portion of hummus. Omit if you don’t tolerate legumes.'], nutrition: { calories: 95, protein: 3, carbs: 10, fat: 5, fiber: 3 } },
-];
-
-var MEAL_ORDER = ['breakfast', 'lunch', 'dinner', 'snack'];
+// Recipes are loaded from my-recipes.json only
+var RECIPES = [];
+var PERSONAL_RECIPES = [];  // Only these are used for meal plan generation
+var MEAL_ORDER = ['breakfast', 'lunch/dinner', 'snack'];  // for Recipes page
+var PLAN_MEAL_ORDER = ['breakfast', 'lunch', 'dinner', 'snack'];  // for meal plan display
 
 function recipeSlug(name) {
   return name.toLowerCase()
@@ -50,6 +30,19 @@ function escapeHtml(str) {
 
 function getRecipesByMeal(meal) {
   return RECIPES.filter(function (r) { return r.meal === meal; });
+}
+
+function formatMealLabel(meal) {
+  if (meal === 'lunch/dinner') return 'Lunch / Dinner';
+  return meal ? meal.charAt(0).toUpperCase() + meal.slice(1) : '';
+}
+
+// For plan only: use personal recipes; lunch and dinner share pool "lunch/dinner", no repeat same day
+function getRecipesForPlan(meal) {
+  if (meal === 'lunch' || meal === 'dinner') {
+    return PERSONAL_RECIPES.filter(function (r) { return r.meal === 'lunch/dinner'; });
+  }
+  return PERSONAL_RECIPES.filter(function (r) { return r.meal === meal; });
 }
 
 function sumNutrition(recipes) {
@@ -108,10 +101,19 @@ function pickRandom(arr, count) {
 
 function generateDay() {
   var day = {};
-  MEAL_ORDER.forEach(function (meal) {
-    var options = getRecipesByMeal(meal), picked = pickRandom(options, 1);
-    day[meal] = picked[0] ? picked[0] : null;
-  });
+  var lunchDinnerPool = getRecipesForPlan('lunch').slice();
+  var lunchPicked = pickRandom(lunchDinnerPool, 1)[0] || null;
+  var dinnerPicked = null;
+  if (lunchPicked && lunchDinnerPool.length > 1) {
+    var rest = lunchDinnerPool.filter(function (r) { return r !== lunchPicked; });
+    dinnerPicked = pickRandom(rest, 1)[0] || null;
+  } else if (lunchPicked && lunchDinnerPool.length === 1) {
+    dinnerPicked = null;
+  }
+  day.breakfast = pickRandom(getRecipesForPlan('breakfast'), 1)[0] || null;
+  day.lunch = lunchPicked;
+  day.dinner = dinnerPicked;
+  day.snack = pickRandom(getRecipesForPlan('snack'), 1)[0] || null;
   return day;
 }
 
@@ -123,7 +125,7 @@ function generateWeek() {
 
 function renderDay(day, title) {
   var parts = [];
-  MEAL_ORDER.forEach(function (meal) {
+  PLAN_MEAL_ORDER.forEach(function (meal) {
     var label = meal.charAt(0).toUpperCase() + meal.slice(1);
     var r = day[meal];
     var dishHtml;
@@ -135,7 +137,7 @@ function renderDay(day, title) {
     }
     parts.push('<div class="plan-meal"><strong>' + label + ':</strong> ' + dishHtml + '</div>');
   });
-  var recipes = MEAL_ORDER.map(function (m) { return day[m]; }).filter(Boolean);
+  var recipes = PLAN_MEAL_ORDER.map(function (m) { return day[m]; }).filter(Boolean);
   var dayTotal = sumNutrition(recipes);
   var nutritionLine = (recipes.length > 0) ? '<div class="plan-day-nutrition">' + formatNutritionInlineHtml(dayTotal) + '</div>' : '';
   return '<div class="plan-day"><h3>' + title + '</h3>' + parts.join('') + nutritionLine + '</div>';
@@ -176,7 +178,7 @@ function buildRecipeModalBodyHtml(recipe) {
   var steps = (recipe.steps && recipe.steps.length)
     ? '<ol class="recipe-modal-steps">' + recipe.steps.map(function (s) { return '<li>' + escapeHtml(s) + '</li>'; }).join('') + '</ol>'
     : '';
-  var mealLabel = recipe.meal ? recipe.meal.charAt(0).toUpperCase() + recipe.meal.slice(1) : '';
+  var mealLabel = formatMealLabel(recipe.meal);
   var nutritionHtml = recipe.nutrition ? '<div class="recipe-modal-nutrition">' + formatNutritionInlineHtml(recipe.nutrition) + '</div>' : '';
   return '<span class="recipe-modal-meal">' + escapeHtml(mealLabel) + '</span><h2 class="recipe-modal-title">' + escapeHtml(recipe.name) + '</h2>' + ing + steps + nutritionHtml;
 }
@@ -225,7 +227,7 @@ function renderRecipes() {
     getRecipesByMeal(meal).forEach(function (r) {
       var slug = recipeSlug(r.name);
       var desc = escapeHtml(shortDescription(r));
-      html += '<article class="recipe-list-item" id="recipe-' + slug + '" data-recipe-name="' + escapeHtml(r.name) + '" role="button" tabindex="0"><span class="recipe-list-meal">' + meal + '</span><h3 class="recipe-list-title">' + escapeHtml(r.name) + '</h3><p class="recipe-list-desc">' + desc + '</p></article>';
+      html += '<article class="recipe-list-item" id="recipe-' + slug + '" data-recipe-name="' + escapeHtml(r.name) + '" role="button" tabindex="0"><span class="recipe-list-meal">' + formatMealLabel(meal) + '</span><h3 class="recipe-list-title">' + escapeHtml(r.name) + '</h3><p class="recipe-list-desc">' + desc + '</p></article>';
     });
   });
   list.innerHTML = html || '<p>No recipes loaded.</p>';
@@ -244,7 +246,26 @@ function renderRecipes() {
   }
 }
 
-function init() {
+function normalizeRecipe(r) {
+  if (!r || typeof r.name !== 'string' || typeof r.meal !== 'string') return null;
+  return {
+    name: r.name,
+    meal: r.meal,
+    ingredients: Array.isArray(r.ingredients) ? r.ingredients : [],
+    steps: Array.isArray(r.steps) ? r.steps : [],
+    nutrition: r.nutrition && typeof r.nutrition === 'object'
+      ? {
+          calories: Number(r.nutrition.calories) || 0,
+          protein: Number(r.nutrition.protein) || 0,
+          carbs: Number(r.nutrition.carbs) || 0,
+          fat: Number(r.nutrition.fat) || 0,
+          fiber: Number(r.nutrition.fiber) || 0
+        }
+      : { calories: 0, protein: 0, carbs: 0, fat: 0, fiber: 0 }
+  };
+}
+
+function startApp() {
   renderRecipes();
   var planOutput = document.getElementById('plan-output');
   var btnGenerate = document.getElementById('btn-generate');
@@ -263,6 +284,30 @@ function init() {
   }
 
   if (btnGenerate && planOutput) btnGenerate.addEventListener('click', generatePlan);
+}
+
+function init() {
+  fetch('my-recipes.json')
+    .then(function (r) { return r.ok ? r.json() : []; })
+    .then(function (data) {
+      RECIPES = [];
+      PERSONAL_RECIPES = [];
+      if (Array.isArray(data)) {
+        data.forEach(function (r) {
+          var recipe = normalizeRecipe(r);
+          if (recipe) {
+            PERSONAL_RECIPES.push(recipe);
+            RECIPES.push(recipe);
+          }
+        });
+      }
+      startApp();
+    })
+    .catch(function () {
+      RECIPES = [];
+      PERSONAL_RECIPES = [];
+      startApp();
+    });
 }
 
 if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
