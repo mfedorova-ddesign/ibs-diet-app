@@ -91,5 +91,16 @@ body { margin: 0; font-family: 'Segoe UI', system-ui, sans-serif; background: va
 .recipe-list-title { margin: 0 0 0.35em; font-size: 1.05rem; color: var(--text); }
 .recipe-list-desc { margin: 0; font-size: 0.9rem; color: var(--muted); line-height: 1.45; }
 
+/* Grocery list (after plan) */
+.grocery-section { margin-top: 1.5rem; padding-top: 1.25rem; border-top: 1px solid var(--border); }
+.grocery-heading { margin: 0 0 0.75rem; font-size: 1.15rem; color: var(--text); }
+.grocery-controls { display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap; margin-bottom: 1rem; }
+.grocery-controls label { font-weight: 500; color: var(--text); }
+.grocery-people { padding: 0.5rem 0.75rem; border: 1px solid var(--border); border-radius: var(--radius); font-size: 1rem; background: var(--card); }
+.grocery-list { margin-top: 0.5rem; }
+.grocery-items { margin: 0; padding-left: 1.25rem; color: var(--muted); }
+.grocery-items li { margin: 0.25em 0; }
+.grocery-empty { margin: 0; color: var(--muted); font-size: 0.95rem; }
+
 .footer { background: var(--card); border-top: 1px solid var(--border); padding: 1.25rem 0; margin-top: 2rem; text-align: center; }
 .footer p { margin: 0; font-size: 0.9rem; color: var(--muted); }

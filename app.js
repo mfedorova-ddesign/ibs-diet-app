@@ -143,11 +143,28 @@ function renderDay(day, title) {
   return '<div class="plan-day"><h3>' + title + '</h3>' + parts.join('') + nutritionLine + '</div>';
 }
 
+var currentPlan = null;
+var dayNames = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+
+function renderPlanFromData(plan) {
+  if (!plan || !plan.days || !plan.days.length) return '';
+  var title = plan.type === 'week'
+    ? '<h3>Meal plan for the week</h3>'
+    : '<h3>Meal plan for ' + dayNames[new Date().getDay()] + '</h3>';
+  var daysHtml = plan.days.map(function (day, i) {
+    return renderDay(day, plan.type === 'week' ? dayNames[i] : '');
+  }).join('');
+  return title + daysHtml;
+}
+
 function renderPlanForDay() {
   var day = generateDay();
-  var dayNames = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-  var today = dayNames[new Date().getDay()];
-  return '<h3>Meal plan for ' + today + '</h3>' + renderDay(day, '').replace('<h3></h3>', '');
+  return renderPlanFromData({ type: 'day', days: [day] });
+}
+
+function renderPlanForWeek() {
+  var week = generateWeek();
+  return renderPlanFromData({ type: 'week', days: week });
 }
 
 function getOrCreateRecipeModal() {
@@ -213,10 +230,105 @@ function setupPlanDishClicks(container) {
 
 function renderPlanForWeek() {
   var week = generateWeek();
-  var dayNames = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-  var html = '<h3>Meal plan for the week</h3>';
-  week.forEach(function (day, i) { html += renderDay(day, dayNames[i]); });
-  return html;
+  return renderPlanFromData({ type: 'week', days: week });
+}
+
+function getGrocerySectionHtml(plan) {
+  var scope = plan && plan.type === 'week' ? 'for the week' : 'for today';
+  return '<div id="grocery-section" class="grocery-section">' +
+    '<h3 class="grocery-heading">Grocery list ' + scope + '</h3>' +
+    '<div class="grocery-controls">' +
+    '<label for="grocery-people">Number of people</label>' +
+    '<select id="grocery-people" class="grocery-people">' +
+    '<option value="1">1</option><option value="2" selected>2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option>' +
+    '</select>' +
+    '<button type="button" id="btn-grocery-list" class="btn btn-primary">Generate grocery list</button>' +
+    '</div>' +
+    '<div id="grocery-list" class="grocery-list" aria-live="polite"></div>' +
+    '</div>';
+}
+
+function parseIngredient(str) {
+  if (!str || typeof str !== 'string') return null;
+  var s = str.trim();
+  var amount = 1;
+  var unit = '';
+  var name = s;
+  var numMatch = s.match(/^(\d+(?:\.\d+)?|\d+\/\d+)\s*/);
+  if (numMatch) {
+    var numStr = numMatch[1];
+    amount = numStr.indexOf('/') !== -1
+      ? parseInt(numStr.split('/')[0], 10) / parseInt(numStr.split('/')[1], 10)
+      : parseFloat(numStr);
+    s = s.slice(numMatch[0].length).trim();
+  }
+  var unitMatch = s.match(/^(g|kg|ml|L|l|tbsp|tsp|oz|cup|cups)\s+/i);
+  if (unitMatch) {
+    unit = unitMatch[1];
+    if (unit.toLowerCase() === 'l') unit = 'L';
+    s = s.slice(unitMatch[0].length).trim();
+  }
+  name = s || (unit ? 'ingredient' : '');
+  if (!name && !unit) return null;
+  return { amount: amount, unit: unit, name: name || str };
+}
+
+function roundAmount(n) {
+  if (n >= 100) return Math.round(n);
+  if (n >= 10) return Math.round(n * 2) / 2;
+  if (n >= 1) return Math.round(n * 2) / 2;
+  if (n >= 0.25) return Math.round(n * 4) / 4;
+  return n;
+}
+
+function formatIngredientLine(amount, unit, name) {
+  if (amount <= 0) return name;
+  var a = roundAmount(amount);
+  if (unit) return a + ' ' + unit + ' ' + name;
+  if (a === 1) return name;
+  return a + ' ' + name;
+}
+
+function buildGroceryList(plan, people) {
+  if (!plan || !plan.days || !people || people < 1) return [];
+  var map = {};
+  plan.days.forEach(function (day) {
+    PLAN_MEAL_ORDER.forEach(function (meal) {
+      var r = day[meal];
+      if (!r || !r.ingredients) return;
+      r.ingredients.forEach(function (ingStr) {
+        var parsed = parseIngredient(ingStr);
+        if (!parsed) return;
+        var key = (parsed.unit || '') + '|' + parsed.name.toLowerCase();
+        if (!map[key]) map[key] = { amount: 0, unit: parsed.unit, name: parsed.name };
+        var scale = (parsed.unit || parsed.amount !== 1) ? people : 1;
+        map[key].amount += parsed.amount * scale;
+      });
+    });
+  });
+  return Object.keys(map).sort().map(function (k) {
+    var o = map[k];
+    return formatIngredientLine(o.amount, o.unit, o.name);
+  });
+}
+
+function setupGroceryListButton(container) {
+  if (!container) return;
+  var btn = container.querySelector('#btn-grocery-list');
+  var listEl = container.querySelector('#grocery-list');
+  var peopleEl = container.querySelector('#grocery-people');
+  if (!btn || !listEl) return;
+  btn.addEventListener('click', function () {
+    var people = parseInt(peopleEl.value, 10) || 1;
+    var items = buildGroceryList(currentPlan, people);
+    if (items.length === 0) {
+      listEl.innerHTML = '<p class="grocery-empty">No ingredients in the current plan.</p>';
+      return;
+    }
+    listEl.innerHTML = '<ul class="grocery-items">' + items.map(function (item) {
+      return '<li>' + escapeHtml(item) + '</li>';
+    }).join('') + '</ul>';
+  });
 }
 
 function renderRecipes() {
@@ -277,9 +389,13 @@ function startApp() {
 
   function generatePlan() {
     var type = getSelectedPlanType();
-    var html = type === 'week' ? renderPlanForWeek() : renderPlanForDay();
+    currentPlan = type === 'week'
+      ? { type: 'week', days: generateWeek() }
+      : { type: 'day', days: [generateDay()] };
+    var html = renderPlanFromData(currentPlan) + getGrocerySectionHtml(currentPlan);
     planOutput.innerHTML = html;
     setupPlanDishClicks(planOutput);
+    setupGroceryListButton(planOutput);
     planOutput.scrollIntoView({ behavior: 'smooth' });
   }
 
