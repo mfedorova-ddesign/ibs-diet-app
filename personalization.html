@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Personalization – IBS Diet Helper</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="header">
+    <div class="container">
+      <h1>IBS Diet Helper</h1>
+      <p class="tagline">Meal plans from IBS-friendly recipes</p>
+    </div>
+  </header>
+  <nav class="nav" aria-label="Main menu">
+    <div class="container">
+      <ul class="menu">
+        <li><a href="/">Meal planner</a></li>
+        <li><a href="/recipes.html">Recipes</a></li>
+        <li><a href="/personalization.html" class="is-active" aria-current="page">Personalization</a></li>
+        <li><a href="/about.html">About IBS</a></li>
+      </ul>
+    </div>
+  </nav>
+  <main class="main">
+    <section class="section section-planner section-personalization">
+      <div class="container">
+        <h2>3-day reintroduction plan</h2>
+        <p class="section-intro">Use your usual recipes. Each day one random dish is chosen and adjusted with a small amount of grains or lactose (e.g. bread on the side, or normal milk instead of lactose-free). Day 1: small, Day 2: a bit more, Day 3: larger. Click the dotted dish to see the update on the recipe card.</p>
+        <div class="planner-controls">
+          <div class="plan-options plan-options-personalization">
+            <label class="plan-option">
+              <input type="checkbox" name="add-grains" id="add-grains">
+              <span>Add grains</span>
+            </label>
+            <label class="plan-option">
+              <input type="checkbox" name="add-lactose" id="add-lactose">
+              <span>Add lactose</span>
+            </label>
+          </div>
+          <button type="button" id="btn-generate-3day" class="btn btn-primary">Generate 3-day plan</button>
+        </div>
+        <div id="plan-output-3day" class="plan-output" aria-live="polite">
+          <p class="placeholder">Select at least one option above and click Generate.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer class="footer">
+    <div class="container">
+      <p>IBS Diet Helper – educational use. Consult a healthcare provider for personal advice.</p>
+    </div>
+  </footer>
+  <script src="app.js"></script>
+</body>
+</html>

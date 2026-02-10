@@ -4,6 +4,18 @@ var PERSONAL_RECIPES = [];  // Only these are used for meal plan generation
 var MEAL_ORDER = ['breakfast', 'lunch/dinner', 'snack'];  // for Recipes page
 var PLAN_MEAL_ORDER = ['breakfast', 'lunch', 'dinner', 'snack'];  // for meal plan display
 
+// 3-day reintroduction: one random dish per day gets this adjustment (small → medium → large)
+var REINTRODUCTION_GRAINS = [
+  'Add 20g white bread on the side (or a small piece)',
+  'Add 40g white bread or a small portion of pasta/spaghetti',
+  'Add 60g white bread or a larger portion of grains'
+];
+var REINTRODUCTION_LACTOSE = [
+  'Use normal milk instead of lactose-free in this dish (small amount)',
+  'Use normal milk instead of lactose-free (medium amount)',
+  'Use normal milk instead of lactose-free (larger amount)'
+];
+
 function recipeSlug(name) {
   return name.toLowerCase()
     .replace(/[^a-z0-9\s]/g, ' ')
@@ -124,6 +136,10 @@ function generateWeek() {
 }
 
 function renderDay(day, title) {
+  return renderDayCore(day, title, null);
+}
+
+function renderDayCore(day, title, adjustmentForDay) {
   var parts = [];
   PLAN_MEAL_ORDER.forEach(function (meal) {
     var label = meal.charAt(0).toUpperCase() + meal.slice(1);
@@ -131,7 +147,11 @@ function renderDay(day, title) {
     var dishHtml;
     if (r && r.name) {
       var nameEsc = escapeHtml(r.name);
-      dishHtml = '<button type="button" class="plan-dish" data-recipe-name="' + nameEsc + '">' + nameEsc + '</button>';
+      var dataAdd = (adjustmentForDay && adjustmentForDay.meal === meal && adjustmentForDay.text)
+        ? ' data-additions="' + escapeHtml(adjustmentForDay.text) + '"'
+        : '';
+      var addClass = (adjustmentForDay && adjustmentForDay.meal === meal) ? ' plan-dish-with-addition' : '';
+      dishHtml = '<button type="button" class="plan-dish' + addClass + '" data-recipe-name="' + nameEsc + '"' + dataAdd + '>' + nameEsc + '</button>';
     } else {
       dishHtml = '—';
     }
@@ -141,6 +161,41 @@ function renderDay(day, title) {
   var dayTotal = sumNutrition(recipes);
   var nutritionLine = (recipes.length > 0) ? '<div class="plan-day-nutrition">' + formatNutritionInlineHtml(dayTotal) + '</div>' : '';
   return '<div class="plan-day"><h3>' + title + '</h3>' + parts.join('') + nutritionLine + '</div>';
+}
+
+function generate3DayPlan() {
+  return [generateDay(), generateDay(), generateDay()];
+}
+
+function pickRandomMealWithRecipe(day) {
+  var available = PLAN_MEAL_ORDER.filter(function (m) { return day[m] && day[m].name; });
+  if (available.length === 0) return null;
+  return available[Math.floor(Math.random() * available.length)];
+}
+
+function get3DayAdjustments(days, addGrains, addLactose) {
+  var out = [];
+  for (var i = 0; i < 3; i++) {
+    var day = days[i];
+    var meal = day ? pickRandomMealWithRecipe(day) : null;
+    var parts = [];
+    if (addGrains && REINTRODUCTION_GRAINS[i]) parts.push(REINTRODUCTION_GRAINS[i]);
+    if (addLactose && REINTRODUCTION_LACTOSE[i]) parts.push(REINTRODUCTION_LACTOSE[i]);
+    var text = parts.length ? parts.join('. ') : '';
+    out.push(meal && text ? { meal: meal, text: text } : null);
+  }
+  return out;
+}
+
+function render3DayPlan(days, addGrains, addLactose) {
+  var dayLabels = ['Day 1', 'Day 2', 'Day 3'];
+  var html = '<h3>3-day reintroduction plan</h3>';
+  var adjustments = (addGrains || addLactose) ? get3DayAdjustments(days, addGrains, addLactose) : [];
+  days.forEach(function (day, i) {
+    var adj = (adjustments[i] && adjustments[i].text) ? adjustments[i] : null;
+    html += renderDayCore(day, dayLabels[i], adj);
+  });
+  return html;
 }
 
 var currentPlan = null;
@@ -187,7 +242,7 @@ function getOrCreateRecipeModal() {
   return modal;
 }
 
-function buildRecipeModalBodyHtml(recipe) {
+function buildRecipeModalBodyHtml(recipe, additions) {
   if (!recipe) return '';
   var ing = (recipe.ingredients && recipe.ingredients.length)
     ? '<ul class="recipe-modal-ingredients">' + recipe.ingredients.map(function (i) { return '<li>' + escapeHtml(i) + '</li>'; }).join('') + '</ul>'
@@ -197,14 +252,17 @@ function buildRecipeModalBodyHtml(recipe) {
     : '';
   var mealLabel = formatMealLabel(recipe.meal);
   var nutritionHtml = recipe.nutrition ? '<div class="recipe-modal-nutrition">' + formatNutritionInlineHtml(recipe.nutrition) + '</div>' : '';
-  return '<span class="recipe-modal-meal">' + escapeHtml(mealLabel) + '</span><h2 class="recipe-modal-title">' + escapeHtml(recipe.name) + '</h2>' + ing + steps + nutritionHtml;
+  var additionsBlock = additions
+    ? '<div class="recipe-modal-additions"><span class="recipe-modal-additions-label">Update in this plan</span> ' + escapeHtml(additions) + '</div>'
+    : '';
+  return '<span class="recipe-modal-meal">' + escapeHtml(mealLabel) + '</span><h2 class="recipe-modal-title">' + escapeHtml(recipe.name) + '</h2>' + additionsBlock + ing + steps + nutritionHtml;
 }
 
-function openRecipeModal(recipe) {
+function openRecipeModal(recipe, additions) {
   if (!recipe) return;
   var modal = getOrCreateRecipeModal();
   var body = modal.querySelector('.recipe-modal-body');
-  if (body) body.innerHTML = buildRecipeModalBodyHtml(recipe);
+  if (body) body.innerHTML = buildRecipeModalBodyHtml(recipe, additions || '');
   modal.classList.add('is-visible');
   modal.setAttribute('aria-hidden', 'false');
   modal.querySelector('.recipe-modal-close').focus();
@@ -223,7 +281,8 @@ function setupPlanDishClicks(container) {
   container.querySelectorAll('.plan-dish').forEach(function (btn) {
     btn.addEventListener('click', function () {
       var recipe = getRecipeByName(btn.getAttribute('data-recipe-name'));
-      openRecipeModal(recipe);
+      var additions = btn.getAttribute ? btn.getAttribute('data-additions') : null;
+      openRecipeModal(recipe, additions);
     });
   });
 }
@@ -400,6 +459,28 @@ function startApp() {
   }
 
   if (btnGenerate && planOutput) btnGenerate.addEventListener('click', generatePlan);
+
+  var planOutput3day = document.getElementById('plan-output-3day');
+  if (planOutput3day) initPersonalization(planOutput3day);
+}
+
+function initPersonalization(container) {
+  var btn = document.getElementById('btn-generate-3day');
+  var addGrains = document.getElementById('add-grains');
+  var addLactose = document.getElementById('add-lactose');
+  if (!btn || !container) return;
+  btn.addEventListener('click', function () {
+    var grains = addGrains && addGrains.checked;
+    var lactose = addLactose && addLactose.checked;
+    if (!grains && !lactose) {
+      container.innerHTML = '<p class="placeholder">Select at least one option (Add grains or Add lactose) and click Generate.</p>';
+      return;
+    }
+    var days = generate3DayPlan();
+    container.innerHTML = render3DayPlan(days, grains, lactose);
+    setupPlanDishClicks(container);
+    container.scrollIntoView({ behavior: 'smooth' });
+  });
 }
 
 function init() {

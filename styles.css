@@ -62,6 +62,8 @@ body { margin: 0; font-family: 'Segoe UI', system-ui, sans-serif; background: va
 .recipe-modal-meal { font-size: 0.75rem; color: var(--accent); text-transform: uppercase; letter-spacing: 0.06em; display: block; margin-bottom: 0.25em; }
 .recipe-modal-title { margin: 0 0 0.5em; font-size: 1.25rem; color: var(--text); }
 .recipe-modal-nutrition { margin-bottom: 1em; }
+.recipe-modal-additions { margin: 0.75em 0 1em; padding: 0.75rem 1rem; background: rgba(74, 124, 89, 0.12); border-left: 4px solid var(--accent); border-radius: 0 var(--radius) var(--radius) 0; font-size: 0.95rem; }
+.recipe-modal-additions-label { font-weight: 700; color: var(--accent); display: block; margin-bottom: 0.25em; }
 .recipe-modal-ingredients, .recipe-modal-steps { margin: 0.5em 0 0.75em; padding-left: 1.25em; font-size: 0.95rem; color: var(--muted); }
 .recipe-modal-ingredients li, .recipe-modal-steps li { margin: 0.25em 0; }
 
@@ -73,6 +75,9 @@ body { margin: 0; font-family: 'Segoe UI', system-ui, sans-serif; background: va
 .plan-day-nutrition .nut-carbs { color: #4a5580; }
 .plan-day-nutrition .nut-fat { color: #6b4a6b; }
 .plan-day-nutrition .nut-fiber { color: #2d5c50; }
+.plan-dish-with-addition { border-bottom: 2px dotted var(--accent); }
+.plan-day-additions { margin-top: 0.5rem; padding-top: 0.5rem; border-top: 1px dashed var(--border); font-size: 0.85rem; color: var(--muted); }
+.plan-additions-label { font-weight: 600; color: var(--accent); }
 
 /* Nutrition inline (recipe card – same subtle style as plan) */
 .recipe-modal-nutrition { margin-top: 1rem; padding-top: 0.75rem; border-top: 1px solid rgba(74, 124, 89, 0.25); font-size: 0.8rem; font-weight: 600; }
