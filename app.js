@@ -244,6 +244,9 @@ function getOrCreateRecipeModal() {
 
 function buildRecipeModalBodyHtml(recipe, additions) {
   if (!recipe) return '';
+  var imgBlock = recipe.image
+    ? '<div class="recipe-modal-image"><img src="' + escapeHtml(recipe.image) + '" alt="" loading="lazy"></div>'
+    : '';
   var ing = (recipe.ingredients && recipe.ingredients.length)
     ? '<ul class="recipe-modal-ingredients">' + recipe.ingredients.map(function (i) { return '<li>' + escapeHtml(i) + '</li>'; }).join('') + '</ul>'
     : '';
@@ -255,7 +258,7 @@ function buildRecipeModalBodyHtml(recipe, additions) {
   var additionsBlock = additions
     ? '<div class="recipe-modal-additions"><span class="recipe-modal-additions-label">Update in this plan</span> ' + escapeHtml(additions) + '</div>'
     : '';
-  return '<span class="recipe-modal-meal">' + escapeHtml(mealLabel) + '</span><h2 class="recipe-modal-title">' + escapeHtml(recipe.name) + '</h2>' + additionsBlock + ing + steps + nutritionHtml;
+  return imgBlock + '<span class="recipe-modal-meal">' + escapeHtml(mealLabel) + '</span><h2 class="recipe-modal-title">' + escapeHtml(recipe.name) + '</h2>' + additionsBlock + ing + steps + nutritionHtml;
 }
 
 function openRecipeModal(recipe, additions) {
@@ -398,7 +401,10 @@ function renderRecipes() {
     getRecipesByMeal(meal).forEach(function (r) {
       var slug = recipeSlug(r.name);
       var desc = escapeHtml(shortDescription(r));
-      html += '<article class="recipe-list-item" id="recipe-' + slug + '" data-recipe-name="' + escapeHtml(r.name) + '" role="button" tabindex="0"><span class="recipe-list-meal">' + formatMealLabel(meal) + '</span><h3 class="recipe-list-title">' + escapeHtml(r.name) + '</h3><p class="recipe-list-desc">' + desc + '</p></article>';
+      var thumb = r.image
+        ? '<span class="recipe-list-thumb"><img src="' + escapeHtml(r.image) + '" alt="" loading="lazy"></span>'
+        : '';
+      html += '<article class="recipe-list-item' + (r.image ? ' recipe-list-item-has-thumb' : '') + '" id="recipe-' + slug + '" data-recipe-name="' + escapeHtml(r.name) + '" role="button" tabindex="0">' + thumb + '<div class="recipe-list-content"><span class="recipe-list-meal">' + formatMealLabel(meal) + '</span><h3 class="recipe-list-title">' + escapeHtml(r.name) + '</h3><p class="recipe-list-desc">' + desc + '</p></div></article>';
     });
   });
   list.innerHTML = html || '<p>No recipes loaded.</p>';
@@ -432,7 +438,8 @@ function normalizeRecipe(r) {
           fat: Number(r.nutrition.fat) || 0,
           fiber: Number(r.nutrition.fiber) || 0
         }
-      : { calories: 0, protein: 0, carbs: 0, fat: 0, fiber: 0 }
+      : { calories: 0, protein: 0, carbs: 0, fat: 0, fiber: 0 },
+    image: typeof r.image === 'string' && r.image.trim() ? r.image.trim() : null
   };
 }
 

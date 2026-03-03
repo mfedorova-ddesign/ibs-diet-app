@@ -2,6 +2,7 @@
   {
     "name": "Savory Oatmeal with Eggs & Greens",
     "meal": "breakfast",
+    "image": "https://placehold.co/400x300/2d6b4a/fff?text=Savory+Oatmeal",
     "ingredients": [
       "50 g gluten-free rolled oats",
       "200 ml lactose-free milk",
@@ -60,6 +61,7 @@
   {
     "name": "Cottage Cheese Bowl with Fruit & Nuts",
     "meal": "breakfast",
+    "image": "https://placehold.co/400x300/2d6b4a/fff?text=Cottage+Cheese+Bowl",
     "ingredients": [
       "200 g lactose-free cottage cheese",
       "1 kiwi",
@@ -75,6 +77,7 @@
   {
     "name": "Turkey with Rice and Stewed Vegetables",
     "meal": "lunch/dinner",
+    "image": "https://placehold.co/400x300/2d6b4a/fff?text=Turkey+Rice",
     "ingredients": [
       "150 g turkey fillet",
       "70 g dry rice",
